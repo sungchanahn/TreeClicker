@@ -15,6 +15,7 @@ public class TreeCondition : MonoBehaviour
     private void Update()
     {
         uiBar.fillAmount = GetPrecentage();
+        curValueText.text = GetCurValueText();
     }
 
     private float GetPrecentage()
@@ -24,7 +25,7 @@ public class TreeCondition : MonoBehaviour
 
     private string GetCurValueText()
     {
-        return $"{curValue.ToString("N1")} / {maxValue}";
+        return $"{curValue.ToString("N2")} / {maxValue.ToString("N2")}";
     }
 
     public void Add(float value)
