@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fef0912398350d4db7c56f8ead16bd9, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  curTreeName: 
-  curTreeGrowthPhase: 
+  curTreeName: "\uB098\uBB34 \uC0C8\uC2F9"
   curTreeGrowthPhaseIndex: 0
   growthValuePerClick: 1
+  gold: 0

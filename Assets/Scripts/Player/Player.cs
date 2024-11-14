@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
 
     public void SetCurrentTree()
     {
+        if (currentTree != null)
+        {
+            Destroy(currentTree.gameObject);
+        }
         currentTree = SpawnTree().GetComponent<Tree>();
         UpdatePlayerData();
     }
