@@ -12,9 +12,9 @@ public class GameManager : Singleton<GameManager>
         set { player = value; }
     }
 
-    [SerializeField] private int goldGainProbability;
-    [SerializeField] private int minGold;
-    [SerializeField] private int maxGold;
+    [SerializeField] private int goldGainProbability = 20;
+    [SerializeField] private int minGold = 1;
+    [SerializeField] private int maxGold = 10;
 
     protected override void Awake()
     {
@@ -31,12 +31,15 @@ public class GameManager : Singleton<GameManager>
         if (IsAppearGold())
         {
             Player.data.gold += GetRandomGold();
+            Debug.Log(Player.data.gold + "G");
+
+            UIManager.Instance.uiGold.ChangeAmount();
         }
     }
 
     private int GetRandomGold()
     {
-        return Random.Range(minGold, maxGold);
+        return Random.Range(minGold, maxGold + 1);
     }
 
     private bool IsAppearGold()
