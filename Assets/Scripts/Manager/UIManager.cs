@@ -5,5 +5,5 @@ using UnityEngine;
 public class UIManager : Singleton<UIManager>
 {
     public UIGold uiGold;
-    public UIDisplay UIDisplay;
+    public UIDisplayGrowthValue uiDisplay;
 }

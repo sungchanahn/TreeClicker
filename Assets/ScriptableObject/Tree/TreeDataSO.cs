@@ -14,6 +14,8 @@ public class TreeDataSO : ScriptableObject
     public float maxNutrition;
     public float passiveValue;
 
+
+    //저장 기능 구현 시 분리
     [Header("SaveData")]
     public float growth;
     public float moisture;
