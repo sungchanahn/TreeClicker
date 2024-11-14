@@ -8,6 +8,22 @@ public class PlayerInputController : MonoBehaviour
 {
     public event Action OnClickEvent;
 
+    [SerializeField] private float coolDown;
+    [SerializeField] private float autoClickDuration;
+    [SerializeField] private float autoClickInterval;
+
+    public GameObject autoClickButton;
+    public GameObject deactiveAutoClick;
+
+    private WaitForSeconds interval;
+
+    private bool isCoolDown = false;
+
+    private void Awake()
+    {
+        interval = new WaitForSeconds(autoClickInterval);
+    }
+
     public void OnClick(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && isValidClickTree())
@@ -32,5 +48,46 @@ public class PlayerInputController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void StartAutoClick()
+    {
+        if (!isCoolDown)
+        {
+            StartCoroutine(AutoClick());
+        }
+    }
+
+    IEnumerator AutoClick()
+    {
+        float remainAutoClickTime = autoClickDuration;
+
+        while (remainAutoClickTime >= 0f)
+        {
+            CallClickEvent();
+            remainAutoClickTime -= autoClickInterval;
+            yield return interval;
+        }
+
+        StartCoroutine(CoolDown());
+    }
+
+    IEnumerator CoolDown()
+    {
+        isCoolDown = true;
+        float temp = coolDown;
+        autoClickButton.SetActive(false);
+        deactiveAutoClick.SetActive(true);
+
+        while (coolDown >= 0)
+        {
+            coolDown -= Time.deltaTime;
+            yield return null;
+        }
+
+        coolDown = temp;
+        isCoolDown = false;
+        autoClickButton.SetActive(true);
+        deactiveAutoClick.SetActive(false);
     }
 }

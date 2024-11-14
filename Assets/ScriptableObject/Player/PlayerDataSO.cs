@@ -8,4 +8,5 @@ public class PlayerDataSO : ScriptableObject
     public string curTreeName;
     public int curTreeGrowthPhaseIndex;
     public float growthValuePerClick;
+    public int gold;
 }

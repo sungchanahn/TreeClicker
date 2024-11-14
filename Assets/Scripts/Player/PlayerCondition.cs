@@ -17,15 +17,14 @@ public class PlayerCondition : MonoBehaviour
         Moisture.maxValue = GameManager.Instance.Player.currentTree.data.maxMoisture;
         Nutrition.maxValue = GameManager.Instance.Player.currentTree.data.maxNutrition;
 
-        Growth.curValue = 0f;
+        Growth.curValue = GameManager.Instance.Player.currentTree.data.growth;
         Moisture.curValue = GameManager.Instance.Player.currentTree.data.maxMoisture * 0.5f;
         Nutrition.curValue = GameManager.Instance.Player.currentTree.data.maxNutrition * 0.5f;
 
         Moisture.passiveValue = GameManager.Instance.Player.currentTree.data.passiveValue;
         Nutrition.passiveValue = GameManager.Instance.Player.currentTree.data.passiveValue;
 
-        GameManager.Instance.Player.Input.OnClickEvent += growTree;
-        StartCoroutine(PassiveGrowth());
+        GameManager.Instance.Player.Input.OnClickEvent += growTree;        
     }
 
     private void Update()
@@ -42,10 +41,5 @@ public class PlayerCondition : MonoBehaviour
     {
         Growth.Add(GameManager.Instance.Player.data.growthValuePerClick);
         Debug.Log(Growth.curValue);
-    }
-
-    IEnumerator PassiveGrowth()
-    {
-        yield return null;
     }
 }
