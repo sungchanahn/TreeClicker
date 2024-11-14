@@ -19,6 +19,6 @@ MonoBehaviour:
   maxMoisture: 100
   maxNutrition: 100
   passiveValue: 0.1
-  growth: 0
-  moisture: 0
-  nutrition: 0
+  growth: 117
+  moisture: 48.63974
+  nutrition: 48.63974

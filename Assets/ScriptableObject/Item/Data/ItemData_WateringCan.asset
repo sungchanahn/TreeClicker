@@ -9,10 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fef0912398350d4db7c56f8ead16bd9, type: 3}
-  m_Name: PlayerData
+  m_Script: {fileID: 11500000, guid: 304245f869286e5429debf4ec09fb90b, type: 3}
+  m_Name: ItemData_WateringCan
   m_EditorClassIdentifier: 
-  curTreeName: "\uB098\uBB34 \uC0C8\uC2F9"
-  curTreeGrowthPhaseIndex: 1
-  growthValuePerClick: 1
-  gold: 229
+  id: 0
+  itemName: "\uBB3C\uBFCC\uB9AC\uAC1C"
+  price: 1000
+  itemtype: 1
+  passiveEffects: []
+  usableEffects:
+  - effectStatType: 1
+    effectValue: 50
+    useCount: 10
