@@ -12,6 +12,11 @@ public class UIGold : MonoBehaviour
         UIManager.Instance.uiGold = this;
     }
 
+    private void Start()
+    {
+        ChangeAmount();
+    }
+
     public void ChangeAmount()
     {
         amountText.text = $"{GameManager.Instance.Player.data.gold}G";
