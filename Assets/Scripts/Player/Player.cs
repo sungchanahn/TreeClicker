@@ -7,33 +7,26 @@ public class Player : MonoBehaviour
     public PlayerDataSO data;
     public PlayerInputController Input { get; private set; }
     public PlayerCondition Condition { get; set; }
-    public GameObject treePrefab;
     public GameObject[] trees;
     public Tree currentTree;
+    public Transform treeSpawnPosition;
 
     private void Awake()
     {
         GameManager.Instance.Player = this;
         Input = GetComponent<PlayerInputController>();
         Condition = GetComponent<PlayerCondition>();
-        InitializeTrees();
         SetCurrentTree();
     }
 
-    public void InitializeTrees()
+    public GameObject SpawnTree()
     {
-        int treeCount = treePrefab.transform.childCount;
-        trees = new GameObject[treeCount];
-        for (int i = 0; i < treeCount; i++)
-        {
-            trees[i] = treePrefab.transform.GetChild(i).gameObject;
-        }
+        return Instantiate(trees[data.curTreeGrowthPhaseIndex], treeSpawnPosition).gameObject;
     }
 
     public void SetCurrentTree()
     {
-        trees[data.curTreeGrowthPhaseIndex].SetActive(true);
-        currentTree = trees[data.curTreeGrowthPhaseIndex].GetComponent<Tree>();
+        currentTree = SpawnTree().GetComponent<Tree>();
         UpdatePlayerData();
     }
 
