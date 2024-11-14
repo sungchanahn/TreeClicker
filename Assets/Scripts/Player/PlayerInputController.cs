@@ -18,6 +18,7 @@ public class PlayerInputController : MonoBehaviour
     private WaitForSeconds interval;
 
     private bool isCoolDown = false;
+    private bool isAutoClick = false;
 
     private void Awake()
     {
@@ -52,7 +53,7 @@ public class PlayerInputController : MonoBehaviour
 
     public void StartAutoClick()
     {
-        if (!isCoolDown)
+        if (!isCoolDown && !isAutoClick)
         {
             StartCoroutine(AutoClick());
         }
@@ -60,6 +61,7 @@ public class PlayerInputController : MonoBehaviour
 
     IEnumerator AutoClick()
     {
+        isAutoClick = true;
         float remainAutoClickTime = autoClickDuration;
 
         while (remainAutoClickTime >= 0f)
@@ -68,13 +70,13 @@ public class PlayerInputController : MonoBehaviour
             remainAutoClickTime -= autoClickInterval;
             yield return interval;
         }
-
-        StartCoroutine(CoolDown());
+        isCoolDown = true;
+        isAutoClick = false;
+        StartCoroutine(CoolDown());        
     }
 
     IEnumerator CoolDown()
-    {
-        isCoolDown = true;
+    {        
         float temp = coolDown;
         autoClickButton.SetActive(false);
         deactiveAutoClick.SetActive(true);
